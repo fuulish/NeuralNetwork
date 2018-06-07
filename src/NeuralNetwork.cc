@@ -19,18 +19,7 @@ void NeuralNetwork::add_layer(int num_nodes)
 
   layers.push_back(layer);
 
-  // NOTE: as long as this is the only place we need to use the iterator for element access, OK, otherwise other data structure necessary
-
-  // if( layers.size() > 1 ) {
-  //     std::list<Layer>::iterator it = layers.begin();
-  //     std::advance(it, layers.size() - 2);
-
-  //     it->update_nodes(num_nodes);
-  // }
-
   update_connectivity();
-
-  // update node weight: each node in the previous layer should get his weights updated
 
   // update cached matrices for fast evaluation of linear algebra
 }

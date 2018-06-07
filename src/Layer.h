@@ -9,11 +9,11 @@ class Layer
     Layer(int num_nodes) : nodes(num_nodes), activation(num_nodes) {}
 
     void update_nodes(int num_following);
-    // TODO: should this return a reference as well?
-    // const std::vector<double> compute_activation( const std::vector<double>& input);
+    // TODO: find better way to include more variants of activation
+    //       maybe inherit from these class, but have multiple methods for activation
+    //       1.) linear, then 2.) non-linear
 
     const std::vector<double> compute_activation(const std::vector<double> &input);
-    // std::list<std::vector<double>> compute_coupling(std::vector<double> activation);
 
     int size() const
     {
@@ -26,7 +26,6 @@ class Layer
             std::cout << "node with " << node.size() << " weights" << std::endl;
     }
 
-    // const std::vector<double> activation();
   private:
     std::list<Node> nodes;
     std::vector<double> activation;
