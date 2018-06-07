@@ -1,10 +1,4 @@
 #include "NeuralNetwork.h"
-#include <list>
-
-
-void Layer::update_nodes() {}
-std::vector<double> Layer::compute_activation(const std::vector<double>& input)
-{}
 
 void NeuralNetwork::add_layer(int num_nodes) {
 
@@ -48,5 +42,7 @@ const std::vector<double> NeuralNetwork::forward( const std::vector<double>& inp
     for( auto it = layers.begin(); it != layers.end(); ++it ) {
         activation = it->compute_activation(activation);
     }
+
+    return activation;
 
 }

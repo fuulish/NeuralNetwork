@@ -1,37 +1,7 @@
 #include <list>
 #include <vector>
 #include <fstream>
-
-class Node {
-    public:
-        Node () {}
-
-        void update_weights( const std::vector<double>& input_weights) {
-            weights = input_weights;
-        }
-
-        void update_bias( const std::vector<double>& input_bias ) {
-            bias = input_bias;
-        }
-
-    private:
-        std::vector<double> weights;
-        std::vector<double> bias;
-};
-
-class Layer {
-    public:
-        Layer(int num_nodes) : nodes(num_nodes), activation(num_nodes) {}
-
-        void update_nodes();
-        // TODO: should this return a reference as well?
-        std::vector<double> compute_activation( const std::vector<double>& input);
-
-        // const std::vector<double> activation();
-    private:
-        std::list<Node> nodes;
-        std::vector<double> activation;
-};
+#include "Layer.h"
 
 class  NeuralNetwork {
 
