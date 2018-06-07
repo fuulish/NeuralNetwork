@@ -8,7 +8,7 @@ class Layer {
 
         void update_nodes( int num_following );
         // TODO: should this return a reference as well?
-        std::vector<double> compute_activation( const std::vector<double>& input);
+        const std::vector<double> compute_activation( const std::vector<double>& input);
 
         int size () {
           return nodes.size();
