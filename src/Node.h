@@ -1,4 +1,5 @@
 #include <vector>
+#include <numeric>
 
 class Node
 {
@@ -10,7 +11,7 @@ public:
     weights = input_weights;
   }
 
-  void update_bias(const std::vector<double>& input_bias)
+  void update_bias(double input_bias)
   {
     bias = input_bias;
   }
@@ -19,9 +20,7 @@ public:
   {
     std::vector<double> new_weights(num_weights, 1.);
     update_weights(new_weights);
-
-    std::vector<double> new_bias(num_weights, 0.);
-    update_bias(new_bias);
+    update_bias(0.);
   }
 
   void initialize_weights();
@@ -30,7 +29,11 @@ public:
     return weights.size();
   }
 
+  double activate( const std::vector<double> & input ) {
+    return std::inner_product( input.begin(), input.end(), weights.begin(), 0.) + bias;
+  }
+
 private:
   std::vector<double> weights;
-  std::vector<double> bias;
+  double bias;
 };

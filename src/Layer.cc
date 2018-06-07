@@ -12,15 +12,11 @@ void Layer::update_nodes(int num_following) {
 
 const std::vector<double> Layer::compute_activation(const std::vector<double>& input) {
 
-  auto it = nodes.cbegin();
-
-  int num_weights = size() * it->size();
-  std::vector<double> weights(num_weights, 0.);
-
   std::vector<double> activation(size(), 0.);
 
-  for( int i=0; i<size(); ++i ) {
-
+  int cnt = 0;
+  for( auto node : nodes ) {
+    activation[cnt++] = node.activate(input);
   }
 
   return activation;
