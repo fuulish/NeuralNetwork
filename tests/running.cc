@@ -1,5 +1,5 @@
 #include <iostream>
-#include "NeuralNetwork.h"
+#include <NeuralNetwork.h>
 
 int main(int argc, char *argv[])
 {
