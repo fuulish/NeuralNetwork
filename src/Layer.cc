@@ -10,7 +10,7 @@ void Layer::update_nodes(int num_following) {
   // }
 }
 
-const std::vector<double> Layer::compute_activation(std::list<std::vector<double>> input) {
+const std::vector<double> Layer::compute_activation(const std::vector<double>& input) {
 
   auto it = nodes.cbegin();
 
@@ -26,6 +26,6 @@ const std::vector<double> Layer::compute_activation(std::list<std::vector<double
   return activation;
 }
 
-std::list<std::vector<double>> Layer::compute_coupling(std::vector<double> activation) {
-
-}
+// std::list<std::vector<double>> Layer::compute_coupling(std::vector<double> activation) {
+// 
+// }

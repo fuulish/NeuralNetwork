@@ -11,8 +11,8 @@ class Layer {
         // TODO: should this return a reference as well?
         // const std::vector<double> compute_activation( const std::vector<double>& input);
 
-        const std::vector<double> compute_activation(std::list<std::vector<double>> input);
-        std::list<std::vector<double>> compute_coupling(std::vector<double> activation);
+        const std::vector<double> compute_activation(const std::vector<double>& input);
+        // std::list<std::vector<double>> compute_coupling(std::vector<double> activation);
 
         int size () const {
           return nodes.size();
