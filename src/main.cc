@@ -2,5 +2,10 @@
 #include "NeuralNetwork.h"
 
 int main(int argc, char *argv[]) {
-    std::cout << "hello world" << std::endl;
+    NeuralNetwork brain;
+
+    brain.add_layer(10);
+
+    std::cout << "everything fine so far" << std::endl;
+
 }

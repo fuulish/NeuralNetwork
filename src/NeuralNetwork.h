@@ -21,9 +21,16 @@ class Node {
 
 class Layer {
     public:
-        Layer(int num_nodes) : nodes(num_nodes) {}
+        Layer(int num_nodes) : nodes(num_nodes), activation(num_nodes) {}
+
+        void update_nodes();
+        // TODO: should this return a reference as well?
+        std::vector<double> compute_activation( const std::vector<double>& input);
+
+        // const std::vector<double> activation();
     private:
         std::list<Node> nodes;
+        std::vector<double> activation;
 };
 
 class  NeuralNetwork {
@@ -33,6 +40,8 @@ class  NeuralNetwork {
         void add_layer( int num_nodes );
         void initialize_nodes( std::ifstream input_file );
         void update_connectivity();
+        const std::vector<double> forward( const std::vector<double>& activation );
+        void backward(/*some sort of loss function */);
 
     private:
         int num_layers = 0;
