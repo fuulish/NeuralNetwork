@@ -30,7 +30,7 @@ public:
   }
 
   double activate( const std::vector<double> & input ) {
-    return std::inner_product( input.begin(), input.end(), weights.begin(), 0.) + bias;
+    return std::inner_product( input.begin(), input.end(), weights.begin(), 0. ) + bias;
   }
 
 private:

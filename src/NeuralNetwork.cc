@@ -56,6 +56,7 @@ std::list<std::vector<double>> NeuralNetwork::forward( std::list<std::vector<dou
         std::vector<double> activation;
         activation = *one;
 
+        // TODO: move to different abstraction
         for (auto it = layers.begin(); it != layers.end(); ++it)
             activation = it->compute_activation(activation);
 
