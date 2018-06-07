@@ -52,9 +52,7 @@ const std::vector<double> NeuralNetwork::forward( const std::vector<double>& inp
 }
 
 void NeuralNetwork::print() {
-    std::cout << "you suck" << std::endl;
-
     for( auto& layer : layers ) {
-        std::cout << layer.size() << std::endl;
+        std::cout << "Layer contains: " << layer.size() << " nodes" << std::endl;
     }
 }
