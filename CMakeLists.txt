@@ -10,6 +10,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -DDEBUG")
 
 add_subdirectory(src)
-add_subdirectory (tests)
+add_subdirectory(tests)
+
 enable_testing ()
+
 add_test (NAME RunTest COMMAND Running)
+add_test (NAME ReadFile COMMAND Readfile)

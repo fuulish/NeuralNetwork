@@ -24,10 +24,6 @@ void NeuralNetwork::add_layer(int num_nodes)
   // update cached matrices for fast evaluation of linear algebra
 }
 
-void NeuralNetwork::initialize_nodes(std::ifstream input_file)
-{
-}
-
 void NeuralNetwork::update_connectivity()
 {
 
@@ -68,4 +64,42 @@ void NeuralNetwork::print()
 
     layer.print();
   }
+}
+
+void NeuralNetwork::from_file( std::string filename ) 
+{
+
+  std::cout << filename << std::endl;
+  std::ifstream myfile;
+  myfile.open(filename, std::ios::in);
+  std::string line;
+
+  if( myfile.is_open()) 
+  {
+    std::getline( myfile, line );
+    num_layers = std::stoi( line );
+    std::list<int> num_nodes(num_layers, 0);
+
+    std::cout << num_layers << std::endl;
+
+    for( int i=0; i<num_layers; ++i )
+    {
+      std::getline( myfile, line );
+      // p = std::stoi( line );
+      add_layer( std::stoi( line ) );
+    }
+
+    // for( int i=0; i<num_layers; ++i )
+    // {
+    //   std::getline( myfile, line );
+    //   num_nodes = std::stoi( line );
+    // }
+  }
+  // else 
+  // {
+  //     raise 
+  // }
+
+  myfile.close();
+
 }
