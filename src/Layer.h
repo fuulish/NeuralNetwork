@@ -1,5 +1,6 @@
 #include <vector>
 #include <list>
+#include <iostream>
 #include "Node.h"
 
 class Layer {
@@ -8,10 +9,19 @@ class Layer {
 
         void update_nodes( int num_following );
         // TODO: should this return a reference as well?
-        const std::vector<double> compute_activation( const std::vector<double>& input);
+        // const std::vector<double> compute_activation( const std::vector<double>& input);
 
-        int size () {
+        const std::vector<double> compute_activation(std::list<std::vector<double>> input);
+        std::list<std::vector<double>> compute_coupling(std::vector<double> activation);
+
+        int size () const {
           return nodes.size();
+        }
+
+
+        void print() {
+          for ( auto& node : nodes )
+            std::cout << "node with " << node.size() << " weights" << std::endl;
         }
 
         // const std::vector<double> activation();

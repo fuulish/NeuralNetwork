@@ -1,8 +1,7 @@
 #include "Layer.h"
 
 void Layer::update_nodes(int num_following) {
-  // TODO: should this be auto&, does this matter
-  for( auto node : nodes) {
+  for( auto& node : nodes) {
     node.reset_size(num_following);
   }
 
@@ -11,8 +10,22 @@ void Layer::update_nodes(int num_following) {
   // }
 }
 
-const std::vector<double> Layer::compute_activation(const std::vector<double>& input) {
-    std::vector<double> activation;
+const std::vector<double> Layer::compute_activation(std::list<std::vector<double>> input) {
 
-    return activation;
+  auto it = nodes.cbegin();
+
+  int num_weights = size() * it->size();
+  std::vector<double> weights(num_weights, 0.);
+
+  std::vector<double> activation(size(), 0.);
+
+  for( int i=0; i<size(); ++i ) {
+
+  }
+
+  return activation;
+}
+
+std::list<std::vector<double>> Layer::compute_coupling(std::vector<double> activation) {
+
 }

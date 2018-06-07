@@ -10,7 +10,9 @@ class  NeuralNetwork {
         void add_layer( int num_nodes );
         void initialize_nodes( std::ifstream input_file );
         void update_connectivity();
-        const std::vector<double> forward( const std::vector<double>& activation );
+        // const std::vector<double> forward( const std::vector<double>& activation );
+        const std::vector<double> forward( std::list<std::vector<double>> input );
+
         void backward(/*some sort of loss function */);
 
         void print();

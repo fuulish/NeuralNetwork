@@ -26,6 +26,10 @@ public:
 
   void initialize_weights();
 
+  int size() const {
+    return weights.size();
+  }
+
 private:
   std::vector<double> weights;
   std::vector<double> bias;
