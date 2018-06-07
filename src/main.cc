@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
     brain.add_layer(10);
     brain.add_layer(10);
 
-    std::cout << "everything fine so far" << std::endl;
+    std::vector<double> input (10, 1.);
     
     brain.print();
 
