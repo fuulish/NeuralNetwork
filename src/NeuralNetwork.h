@@ -13,6 +13,8 @@ class  NeuralNetwork {
         const std::vector<double> forward( const std::vector<double>& activation );
         void backward(/*some sort of loss function */);
 
+        void print();
+
     private:
         int num_layers = 0;
         std::list<Layer> layers;

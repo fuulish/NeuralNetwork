@@ -1,25 +1,29 @@
 #include "NeuralNetwork.h"
+#include <iostream>
 
 void NeuralNetwork::add_layer(int num_nodes) {
 
-            // invalidate cached weights
+    // invalidate cached weights
 
-            // add layer with correct number of nodes
+    // add layer with correct number of nodes
 
-            Layer layer(num_nodes);
-            layers.push_back(layer);
+    Layer layer(num_nodes);
+    layers.push_back(layer);
 
-            // NOTE: as long as this is the only place we need to use the iterator for element access, OK, otherwise other data structure necessary
-            std::list<Layer>::iterator it = layers.begin();
-            std::advance(it, layers.size()-2);
+    // NOTE: as long as this is the only place we need to use the iterator for element access, OK, otherwise other data structure necessary
 
-            it->update_nodes();
+    if( layers.size() > 1 ) {
+        std::list<Layer>::iterator it = layers.begin();
+        std::advance(it, layers.size() - 2);
 
-            update_connectivity();
+        it->update_nodes(num_nodes);
+    }
 
-            // update node weight: each node in the previous layer should get his weights updated
+    update_connectivity();
 
-            // update cached matrices for fast evaluation of linear algebra
+    // update node weight: each node in the previous layer should get his weights updated
+
+    // update cached matrices for fast evaluation of linear algebra
 
 }
 
@@ -45,4 +49,12 @@ const std::vector<double> NeuralNetwork::forward( const std::vector<double>& inp
 
     return activation;
 
+}
+
+void NeuralNetwork::print() {
+    std::cout << "you suck" << std::endl;
+
+    for( auto& layer : layers ) {
+        std::cout << layer.size() << std::endl;
+    }
 }

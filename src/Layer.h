@@ -6,9 +6,13 @@ class Layer {
     public:
         Layer(int num_nodes) : nodes(num_nodes), activation(num_nodes) {}
 
-        void update_nodes();
+        void update_nodes( int num_following );
         // TODO: should this return a reference as well?
         std::vector<double> compute_activation( const std::vector<double>& input);
+
+        int size () {
+          return nodes.size();
+        }
 
         // const std::vector<double> activation();
     private:

@@ -5,7 +5,10 @@ int main(int argc, char *argv[]) {
     NeuralNetwork brain;
 
     brain.add_layer(10);
+    brain.add_layer(10);
 
     std::cout << "everything fine so far" << std::endl;
+    
+    brain.print();
 
 }
