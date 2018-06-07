@@ -45,18 +45,24 @@ void NeuralNetwork::update_connectivity() {
     }
 }
 
-const std::vector<double> NeuralNetwork::forward( const std::vector<double>& input ) {
+std::list<std::vector<double>> NeuralNetwork::forward( std::list<std::vector<double>> input ) {
     // compute activiation in each layer and output
 
-    std::vector<double> activation;
-    activation = input;
+    std::list<std::vector<double>> output;
 
     // TODO: enter here, efficient matrix multiplication routine
 
-    for( auto it = layers.begin(); it != layers.end(); ++ it)
-        activation = it->compute_activation(activation);
+    for( auto one = input.cbegin(); one != input.cend(); ++one ) {
+        std::vector<double> activation;
+        activation = *one;
 
-    return activation;
+        for (auto it = layers.begin(); it != layers.end(); ++it)
+            activation = it->compute_activation(activation);
+
+        output.push_back(activation);
+    }
+
+    return output;
 
 }
 

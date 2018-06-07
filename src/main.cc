@@ -9,9 +9,12 @@ int main(int argc, char *argv[]) {
 
     // TODO: change this to take a list of vectors as input
     std::vector<double> one_pic(10, 1);
+    std::list<std::vector<double>> input;
+
+    input.push_back(one_pic);
 
     brain.print();
 
-    brain.forward(one_pic);
+    brain.forward(input);
 
 }
