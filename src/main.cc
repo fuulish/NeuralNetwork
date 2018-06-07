@@ -11,4 +11,6 @@ int main(int argc, char *argv[]) {
     
     brain.print();
 
+    brain.forward(input);
+
 }
