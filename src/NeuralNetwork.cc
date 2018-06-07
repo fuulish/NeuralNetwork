@@ -43,6 +43,8 @@ const std::vector<double> NeuralNetwork::forward( const std::vector<double>& inp
 
     std::vector<double> activation(input);
 
+    // TODO: substitute by range-based for loop
+
     for( auto it = layers.begin(); it != layers.end(); ++it ) {
         activation = it->compute_activation(activation);
     }
