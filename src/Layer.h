@@ -19,7 +19,7 @@ class Layer
     const std::vector<double> compute_activation(const std::vector<double> &input);
 
     void add_nonlinearity( const std::string& nonlinear_function ) {
-        if( nonlinear_function.compare("tanh") ) {
+        if( nonlinear_function.compare("tanh") == 0 ) {
             nonlinear = std::bind( tanh, std::placeholders::_1 );
         }
     }

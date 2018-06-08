@@ -1,5 +1,6 @@
 #include "NeuralNetwork.h"
 #include <iostream>
+#include <sstream>
 
 void NeuralNetwork::add_layer(int num_nodes)
 {
@@ -68,8 +69,6 @@ void NeuralNetwork::print()
 
 void NeuralNetwork::from_file( std::string filename ) 
 {
-
-  std::cout << filename << std::endl;
   std::ifstream myfile;
   myfile.open(filename, std::ios::in);
   std::string line;
@@ -80,13 +79,21 @@ void NeuralNetwork::from_file( std::string filename )
     num_layers = std::stoi( line );
     std::list<int> num_nodes(num_layers, 0);
 
-    std::cout << num_layers << std::endl;
-
     for( int i=0; i<num_layers; ++i )
     {
       std::getline( myfile, line );
-      // p = std::stoi( line );
-      add_layer( std::stoi( line ) );
+      std::stringstream ss (line);
+      std::string token;
+
+      std::getline( ss, token, ':' );
+      add_layer( std::stoi( token ) );
+
+      std::getline( ss, token, ':');
+
+      auto it = layers.end();
+      it--;
+      it->add_nonlinearity( token );
+
     }
 
     // for( int i=0; i<num_layers; ++i )
