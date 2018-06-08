@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
   assert(num_nodes == layer_structure);
 
   std::vector<double> one_pic(15, 1);
-  std::list<std::vector<double>> input;
+  std::list< std::vector<double> > input;
   input.push_back(one_pic);
 
   brain.forward(input);

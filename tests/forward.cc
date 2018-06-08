@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
   brain.from_file(input_file);
 
   std::vector<double> one_pic(15, 1);
-  std::list<std::vector<double>> input;
+  std::list< std::vector<double> > input;
   input.push_back(one_pic);
 
   auto ener = brain.forward(input);

@@ -13,7 +13,7 @@ class  NeuralNetwork {
         void from_file( std::string filename );
         void update_connectivity();
         // const std::vector<double> forward( const std::vector<double>& activation );
-        std::list<std::vector<double>> forward( std::list<std::vector<double>> input );
+        std::list< std::vector<double> > forward( std::list< std::vector<double> > input );
 
         void backward(/*some sort of loss function */);
 
@@ -36,7 +36,7 @@ class  NeuralNetwork {
         int num_previous_nodes = 0;
 
         // TODO: use smart_pointers, stupid
-        std::list<std::list<Layer*>> graph;
+        std::list< std::list<Layer*> > graph;
 
 };
 

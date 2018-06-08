@@ -52,11 +52,11 @@ void NeuralNetwork::update_connectivity()
   }
 }
 
-std::list<std::vector<double>> NeuralNetwork::forward(std::list<std::vector<double>> input)
+std::list< std::vector<double> > NeuralNetwork::forward(std::list< std::vector<double> > input)
 {
   // compute activiation in each layer and output
 
-  std::list<std::vector<double>> output;
+  std::list< std::vector<double> > output;
 
   // TODO: enter here, efficient matrix multiplication routine
 
