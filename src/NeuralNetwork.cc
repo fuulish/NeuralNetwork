@@ -95,7 +95,7 @@ void NeuralNetwork::from_file( std::string filename )
   {
     std::getline( myfile, line );
     num_layers = std::stoi( line );
-    std::list<int> num_nodes(num_layers, 0);
+    int num_nodes;
 
     for( int i=0; i<num_layers; ++i )
     {
@@ -104,9 +104,11 @@ void NeuralNetwork::from_file( std::string filename )
       std::string token;
 
       std::getline( ss, token, ':' );
+      num_nodes = std::stoi( token );
 
       std::getline( ss, token, ':');
-      add_layer( std::stoi( token ), token );
+
+      add_layer( num_nodes, token );
 
       auto it = layers.end();
       it--;

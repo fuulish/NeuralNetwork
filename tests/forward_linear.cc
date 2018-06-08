@@ -6,23 +6,17 @@ int main(int argc, char *argv[])
 {
   NeuralNetwork brain;
 
-  std::stringstream ss;
-  ss << DATA_DIR << "network.txt";
-
-  std::string input_file = ss.str();
-
-  brain.from_file(input_file);
+  brain.add_layer(15);
+  brain.add_layer(10);
+  brain.add_layer(10);
+  brain.add_layer(1);
 
   std::vector<double> one_pic(15, 1);
   std::list< std::vector<double> > input;
   input.push_back(one_pic);
 
   auto ener = brain.forward(input);
-  std::vector<double> expected(1, 9.999999958776927);
-
-  auto it = ener.begin();
-
-  std::cout << (*it)[0] << std::endl;
+  std::vector<double> expected(1, 1500.);
 
   assert( *(ener.begin()) == expected );
 }
