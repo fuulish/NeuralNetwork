@@ -1,6 +1,9 @@
 #include <vector>
 #include <list>
 #include <iostream>
+#include <string>
+#include <cmath>
+#include <functional>
 #include "Node.h"
 
 class Layer
@@ -14,6 +17,12 @@ class Layer
     //       1.) linear, then 2.) non-linear
 
     const std::vector<double> compute_activation(const std::vector<double> &input);
+
+    void add_nonlinearity( const std::string& nonlinear_function ) {
+        if( nonlinear_function.compare("tanh") ) {
+            nonlinear = std::bind( tanh, std::placeholders::_1 );
+        }
+    }
 
     int size() const
     {
@@ -29,4 +38,5 @@ class Layer
   private:
     std::list<Node> nodes;
     std::vector<double> activation;
+    std::function<double(double)> nonlinear = NULL;
 };

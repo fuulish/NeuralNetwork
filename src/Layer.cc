@@ -17,7 +17,17 @@ const std::vector<double> Layer::compute_activation(const std::vector<double> &i
   int cnt = 0;
   for (auto node : nodes)
   {
-    activation[cnt++] = tanh(node.activate(input));
+    activation[cnt++] = node.activate(input);
+  }
+
+  // TODO: find better way to treat non-linear activation, reference ok?
+  if( nonlinear )
+  {
+    for( auto& p : activation )
+    {
+      p = nonlinear(p);
+    }
+    /* include non-linearity */
   }
 
   return activation;
