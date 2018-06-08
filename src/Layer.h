@@ -37,6 +37,13 @@ class Layer
 
     void set_weights( std::list< std::vector<double> > weights )
     {
+        auto it = weights.begin();
+        for( auto& p : nodes ) {
+
+            p.update_weights( *it );
+            std::advance(it, 1);
+
+        }
 
     }
 
