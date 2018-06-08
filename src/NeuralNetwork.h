@@ -6,7 +6,7 @@
 class  NeuralNetwork {
 
     public:
-        NeuralNetwork() {}
+        NeuralNetwork() : mean(0.), std(1.), num_layers(0) {}
         void add_layer( int num_nodes );
         void add_layer( int num_nodes, const char * nonlinearity );
         void add_layer( int num_nodes, const std::string& nonlinearity );
@@ -29,11 +29,16 @@ class  NeuralNetwork {
             return layer_structure;
         }
 
-    private:
-        int num_layers = 0;
-        std::list<Layer> layers;
+        void set_feature_standardization( double std, double mean )
+        {
+            this->mean = mean;
+            this->std = std;
+        }
 
-        int num_previous_nodes = 0;
+    private:
+        std::list<Layer> layers;
+        double mean, std;
+        int num_layers;
 
         // TODO: use smart_pointers, stupid
         std::list< std::list<Layer*> > graph;
