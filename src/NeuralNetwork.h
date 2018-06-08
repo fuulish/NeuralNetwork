@@ -9,6 +9,7 @@ class  NeuralNetwork {
         NeuralNetwork() {}
         void add_layer( int num_nodes );
         void add_layer( int num_nodes, const char * nonlinearity );
+        void add_layer( int num_nodes, const std::string& nonlinearity );
         void from_file( std::string filename );
         void update_connectivity();
         // const std::vector<double> forward( const std::vector<double>& activation );

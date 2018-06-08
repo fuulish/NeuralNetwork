@@ -25,17 +25,22 @@ void NeuralNetwork::add_layer(int num_nodes)
   // update cached matrices for fast evaluation of linear algebra
 }
 
-void NeuralNetwork::add_layer(int num_nodes, const char * nonlinearity)
+void NeuralNetwork::add_layer(int num_nodes, const std::string& nonlinearity)
 {
   add_layer(num_nodes);
-
-  std::string nonlin ("nonlinearity");
 
   // better with deque
   auto last_layer = layers.end();
   --last_layer;
 
-  last_layer->add_nonlinearity(nonlin);
+  last_layer->add_nonlinearity(nonlinearity);
+}
+
+void NeuralNetwork::add_layer(int num_nodes, const char * nonlinearity)
+{
+  std::string nonlin ("nonlinearity");
+
+  add_layer(num_nodes, nonlin);
 }
 
 void NeuralNetwork::update_connectivity()
@@ -99,9 +104,9 @@ void NeuralNetwork::from_file( std::string filename )
       std::string token;
 
       std::getline( ss, token, ':' );
-      add_layer( std::stoi( token ) );
 
       std::getline( ss, token, ':');
+      add_layer( std::stoi( token ), token );
 
       auto it = layers.end();
       it--;
