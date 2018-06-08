@@ -16,4 +16,5 @@ enable_testing ()
 
 add_test (NAME RunTest COMMAND Running)
 add_test (NAME ReadFile COMMAND Readfile)
+add_test (NAME ForwardSimple COMMAND ForwardSimple)
 add_test (NAME Forward COMMAND Forward)

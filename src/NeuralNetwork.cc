@@ -25,6 +25,19 @@ void NeuralNetwork::add_layer(int num_nodes)
   // update cached matrices for fast evaluation of linear algebra
 }
 
+void NeuralNetwork::add_layer(int num_nodes, const char * nonlinearity)
+{
+  add_layer(num_nodes);
+
+  std::string nonlin ("nonlinearity");
+
+  // better with deque
+  auto last_layer = layers.end();
+  --last_layer;
+
+  last_layer->add_nonlinearity(nonlin);
+}
+
 void NeuralNetwork::update_connectivity()
 {
 

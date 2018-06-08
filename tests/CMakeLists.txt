@@ -8,6 +8,9 @@ target_link_libraries (Running nn)
 add_executable (Readfile readfile.cc)
 target_link_libraries (Readfile nn)
 
+add_executable (ForwardSimple forward_simple.cc)
+target_link_libraries (ForwardSimple nn)
+
 add_executable (Forward forward.cc)
 target_link_libraries (Forward nn)
 
