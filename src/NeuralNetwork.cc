@@ -1,6 +1,7 @@
 #include "NeuralNetwork.h"
 #include <iostream>
 #include <sstream>
+#include <string>
 
 void NeuralNetwork::add_layer(int num_nodes)
 {
@@ -115,6 +116,37 @@ void NeuralNetwork::from_file( std::string filename )
       it->add_nonlinearity( token );
 
     }
+
+    for( auto& my_layer : layers )
+    {
+      std::list< std::vector<double> > weights;
+      std::list< double > bias;
+
+      for( int i=0; i<my_layer.size(); ++i )
+      {
+        std::getline( myfile, line );
+        std::stringstream ss (line);
+
+        std::vector<double> node_weights;
+
+        int cnt = 0;
+        for( std::string token; std::getline(ss, token, ','); ++cnt)
+        {
+          node_weights.push_back( std::stod( token ) );
+          std::cout << node_weights[cnt] << std::endl;
+        }
+
+        weights.push_back(node_weights);
+
+        bias.push_back( std::stod( line ) );
+      }
+
+      my_layer.set_weights(weights);
+      my_layer.set_bias(bias);
+
+    }
+
+    // read in weights and biases for each node
 
     // for( int i=0; i<num_layers; ++i )
     // {

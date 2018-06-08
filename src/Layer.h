@@ -24,6 +24,22 @@ class Layer
         }
     }
 
+    void set_bias( const std::list< double > bias )
+    {
+        auto it = bias.begin();
+        for( auto& p : nodes ) {
+
+            p.update_bias( *it );
+            std::advance(it, 1);
+
+        }
+    }
+
+    void set_weights( std::list< std::vector<double> > weights )
+    {
+
+    }
+
     int size() const
     {
         return nodes.size();
