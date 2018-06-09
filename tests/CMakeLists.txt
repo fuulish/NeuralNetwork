@@ -2,19 +2,19 @@ include_directories (${nn_SOURCE_DIR}/src)
 
 add_definitions(-DDATA_DIR="${CMAKE_SOURCE_DIR}/data/")
 
-add_executable (Running running.cc)
+add_executable (Running EXCLUDE_FROM_ALL running.cc)
 target_link_libraries (Running nn)
 
-add_executable (Readfile readfile.cc)
+add_executable (Readfile EXCLUDE_FROM_ALL readfile.cc)
 target_link_libraries (Readfile nn)
 
-add_executable (ForwardSimple forward_simple.cc)
+add_executable (ForwardSimple EXCLUDE_FROM_ALL forward_simple.cc)
 target_link_libraries (ForwardSimple nn)
 
-add_executable (ForwardLinear forward_linear.cc)
+add_executable (ForwardLinear EXCLUDE_FROM_ALL forward_linear.cc)
 target_link_libraries (ForwardLinear nn)
 
-add_executable (Forward forward.cc)
+add_executable (Forward EXCLUDE_FROM_ALL forward.cc)
 target_link_libraries (Forward nn)
 
 # add_test (NAME RunTest COMMAND Running)
