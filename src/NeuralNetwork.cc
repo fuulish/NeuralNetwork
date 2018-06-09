@@ -133,11 +133,11 @@ void NeuralNetwork::from_file( std::string filename )
         for( std::string token; std::getline(ss, token, ','); ++cnt)
         {
           node_weights.push_back( std::stod( token ) );
-          std::cout << node_weights[cnt] << std::endl;
         }
 
         weights.push_back(node_weights);
 
+        std::getline( myfile, line );
         bias.push_back( std::stod( line ) );
       }
 

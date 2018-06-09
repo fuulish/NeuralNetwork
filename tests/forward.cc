@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
 
   auto it = ener.begin();
 
-  std::cout << (*it)[0] << std::endl;
+  std::cout << (*it)[0] << expected[0] << std::endl;
 
-  assert( *(ener.begin()) == expected );
+  assert( (*(ener.begin()))[0] == expected[0] );
 }
