@@ -164,18 +164,7 @@ void NeuralNetwork::from_file( std::string filename )
 
     }
 
-    // read in weights and biases for each node
-
-    // for( int i=0; i<num_layers; ++i )
-    // {
-    //   std::getline( myfile, line );
-    //   num_nodes = std::stoi( line );
-    // }
   }
-  // else 
-  // {
-  //     raise 
-  // }
 
   myfile.close();
 
