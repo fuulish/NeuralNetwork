@@ -10,16 +10,24 @@ void NeuralNetwork::add_layer(int num_nodes)
 
   // add layer with correct number of nodes
 
-  Layer layer(num_nodes);
-  auto last_layer = layers.end();
+  // 1st layer needs to get size of input layer
 
-  if (layers.size() >= 1)
+  if( (previous_size == 0) && (layers.size() == 0))
   {
-    --last_layer;
-    layer.update_nodes(last_layer->size());
-  }
+    std::vector<double> mean( num_nodes, 0. );
+    std::vector<double> stdev( num_nodes, 1. );
 
-  layers.push_back(layer);
+    this->mean = mean;
+    this->stdev = stdev;
+
+    previous_size = num_nodes;
+  } else
+  {
+    Layer layer(num_nodes);
+    layer.update_nodes(previous_size);
+    previous_size = num_nodes;
+    layers.push_back(layer);
+  }
 
   update_connectivity();
 
@@ -101,9 +109,10 @@ void NeuralNetwork::from_file( std::string filename )
     num_layers = std::stoi( line );
     std::getline( myfile, line );
 
-    int num_input = stoi( line );
-
+    int num_input = std::stoi( line );
     int num_nodes;
+
+    add_layer( num_input );
 
     for( int i=0; i<num_layers; ++i )
     {
@@ -134,7 +143,6 @@ void NeuralNetwork::from_file( std::string filename )
 
       std::getline( myfile, line );
       mean.push_back( std::stod( line ) );
-
     }
 
     set_feature_standardization( stdev, mean );

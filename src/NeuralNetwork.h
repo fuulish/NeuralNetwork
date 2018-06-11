@@ -8,7 +8,7 @@ class NeuralNetwork
 {
 
   public:
-    NeuralNetwork() : num_layers(0) {}
+    NeuralNetwork() : num_layers(0), previous_size(0) {}
     void add_layer(int num_nodes);
     void add_layer(int num_nodes, const char *nonlinearity);
     void add_layer(int num_nodes, const std::string &nonlinearity);
@@ -25,7 +25,7 @@ class NeuralNetwork
     void from_file(std::string filename);
     void update_connectivity();
     // const std::vector<double> forward( const std::vector<double>& activation );
-    std::list<std::vector<double>> forward(std::list<std::vector<double>> input);
+    std::list<std::vector<double> > forward(std::list<std::vector<double>> input);
 
     void backward(/*some sort of loss function */);
 
@@ -62,7 +62,8 @@ class NeuralNetwork
 
   private:
     std::list<Layer> layers;
-    int num_layers;
+    int num_layers, previous_size;
+    int input_size;
 
     std::vector<double> mean, stdev;
 
