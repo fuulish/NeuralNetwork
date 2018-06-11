@@ -20,4 +20,5 @@ add_test (NAME ForwardSimple COMMAND ForwardSimple)
 add_test (NAME ForwardLinear COMMAND ForwardLinear)
 add_test (NAME Forward COMMAND Forward)
 
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS Running Readfile ForwardSimple ForwardLinear Forward )
+add_custom_target(tests DEPENDS Running Readfile ForwardSimple ForwardLinear Forward )
+add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND} DEPENDS tests )
