@@ -8,10 +8,20 @@ class NeuralNetwork
 {
 
   public:
-    NeuralNetwork() : mean(0.), std(1.), num_layers(0) {}
+    NeuralNetwork() : num_layers(0) {}
     void add_layer(int num_nodes);
     void add_layer(int num_nodes, const char *nonlinearity);
     void add_layer(int num_nodes, const std::string &nonlinearity);
+
+    void set_input_size( int num_input )
+    {
+        std::vector<double> mean( num_input, 0. );
+        this->mean = mean;
+
+        std::vector<double> stdev( num_input, 1. );
+        this->stdev  = stdev ;
+    }
+
     void from_file(std::string filename);
     void update_connectivity();
     // const std::vector<double> forward( const std::vector<double>& activation );
@@ -33,24 +43,26 @@ class NeuralNetwork
         return layer_structure;
     }
 
-    void set_feature_standardization(double std, double mean)
+    void set_feature_standardization(std::vector<double> stdev, std::vector<double> mean)
     {
         this->mean = mean;
-        this->std = std;
+        this->stdev = stdev;
     }
 
     void standardize_input_data( std::list< std::vector<double> >& input )
     {
         for( auto &p : input )
         {
-            std::transform( p.begin(), p.end(), p.begin(), [this]( double a ){return (a - this->mean) / this->std;});
+            std::transform( p.begin(), p.end(), mean.begin(), p.begin(), [this]( double a, double b ){return (a - b);});
+            std::transform( p.begin(), p.end(), stdev.begin(), p.begin(), [this]( double a, double b ){return (a / b);});
         }
     }
 
   private:
     std::list<Layer> layers;
-    double mean, std;
     int num_layers;
+
+    std::vector<double> mean, stdev;
 
     // TODO: use smart_pointers, stupid
     std::list<std::list<Layer *>> graph;
