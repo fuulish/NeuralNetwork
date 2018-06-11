@@ -55,6 +55,10 @@ void NeuralNetwork::update_connectivity()
 
 std::list< std::vector<double> > NeuralNetwork::forward(std::list< std::vector<double> > input)
 {
+  // standardize input data
+
+  standardize_input_data( input );
+
   // compute activiation in each layer and output
 
   std::list< std::vector<double> > output;

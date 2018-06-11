@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include "Layer.h"
+#include <algorithm>
 
 class NeuralNetwork
 {
@@ -36,6 +37,14 @@ class NeuralNetwork
     {
         this->mean = mean;
         this->std = std;
+    }
+
+    void standardize_input_data( std::list< std::vector<double> >& input )
+    {
+        for( auto &p : input )
+        {
+            std::transform( p.begin(), p.end(), p.begin(), [this]( double a ){return (a - this->mean) / this->std;});
+        }
     }
 
   private:
