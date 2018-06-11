@@ -1,4 +1,5 @@
 4
+0, 1
 15:linear
 10:tanh
 10:tanh

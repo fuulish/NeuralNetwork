@@ -96,13 +96,27 @@ void NeuralNetwork::from_file( std::string filename )
   {
     std::getline( myfile, line );
     num_layers = std::stoi( line );
+    std::getline( myfile, line );
+
+    std::stringstream ms( line );
+    std::string token;
+
+    std::getline( ms, token, ',' );
+    double mean = stod( token );
+
+    std::getline( ms, token, ',' );
+    double std = stod( token );
+
+    std::cout << mean << std << std::endl;
+
+    set_feature_standardization( std, mean );
+
     int num_nodes;
 
     for( int i=0; i<num_layers; ++i )
     {
       std::getline( myfile, line );
-      std::stringstream ss (line);
-      std::string token;
+      std::stringstream ss( line );
 
       std::getline( ss, token, ':' );
       num_nodes = std::stoi( token );
