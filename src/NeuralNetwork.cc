@@ -57,7 +57,7 @@ std::list< std::vector<double> > NeuralNetwork::forward(std::list< std::vector<d
 {
   // standardize input data
 
-  standardize_input_data( input );
+  // standardize_input_data( input );
 
   // compute activiation in each layer and output
 
@@ -67,8 +67,7 @@ std::list< std::vector<double> > NeuralNetwork::forward(std::list< std::vector<d
 
   for (auto one = input.cbegin(); one != input.cend(); ++one)
   {
-    std::vector<double> activation;
-    activation = *one;
+    std::vector<double> activation = standardize_input_data( *one );
 
     // TODO: move to different abstraction
     for (auto it = layers.begin(); it != layers.end(); ++it)

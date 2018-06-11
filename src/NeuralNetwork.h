@@ -49,14 +49,15 @@ class NeuralNetwork
         this->stdev = stdev;
     }
 
-    void standardize_input_data( std::list< std::vector<double> >& input )
+    std::vector<double> standardize_input_data( const std::vector<double> & input )
     {
-        for( auto &p : input )
-        {
-            std::cout << p.size() << " " << mean.size() << " " << stdev.size() << std::endl;
-            std::transform( p.begin(), p.end(), mean.begin(), p.begin(), [this]( double a, double b ){return (a - b);});
-            std::transform( p.begin(), p.end(), stdev.begin(), p.begin(), [this]( double a, double b ){return (a / b);});
-        }
+
+        std::vector<double> standardized( input.size(), 0. );
+        std::transform( input.begin(), input.end(), mean.begin(), standardized.begin(), []( double a, double b ){ return( a - b ); });
+        std::transform( standardized.begin(), standardized.end(), stdev.begin(), standardized.begin(), []( double a, double b ){ return( a / b ); });
+
+        return standardized;
+
     }
 
   private:
