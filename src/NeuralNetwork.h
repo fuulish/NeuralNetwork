@@ -53,6 +53,7 @@ class NeuralNetwork
     {
         for( auto &p : input )
         {
+            std::cout << p.size() << " " << mean.size() << " " << stdev.size() << std::endl;
             std::transform( p.begin(), p.end(), mean.begin(), p.begin(), [this]( double a, double b ){return (a - b);});
             std::transform( p.begin(), p.end(), stdev.begin(), p.begin(), [this]( double a, double b ){return (a / b);});
         }

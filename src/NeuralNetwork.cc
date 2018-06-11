@@ -104,19 +104,6 @@ void NeuralNetwork::from_file( std::string filename )
 
     int num_input = stoi( line );
 
-    std::vector<double> mean, stdev;
-
-    for( int i=0; i<num_input; ++i ) 
-    {
-      std::getline( myfile, line );
-      stdev.push_back( std::stod( line ) );
-
-      std::getline( myfile, line );
-      mean.push_back( std::stod( line ) );
-    }
-
-    set_feature_standardization( stdev, mean );
-
     int num_nodes;
 
     for( int i=0; i<num_layers; ++i )
@@ -138,6 +125,20 @@ void NeuralNetwork::from_file( std::string filename )
       it->add_nonlinearity( token );
 
     }
+
+    std::vector<double> mean, stdev;
+
+    for( int i=0; i<num_input; ++i ) 
+    {
+      std::getline( myfile, line );
+      stdev.push_back( std::stod( line ) );
+
+      std::getline( myfile, line );
+      mean.push_back( std::stod( line ) );
+
+    }
+
+    set_feature_standardization( stdev, mean );
 
     for( auto& my_layer : layers )
     {
