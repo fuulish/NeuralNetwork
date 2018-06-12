@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <cassert>
 
 std::list< std::vector<double> > read_from_txt( std::string filename, int input_len )
 {
@@ -47,12 +48,13 @@ int main( int argc, char *argv[] )
   std::stringstream ss_input;
   ss_input << DATA_DIR << "torch_input.txt";
 
+  std::stringstream ss_reference;
+  ss_input << DATA_DIR << "torch_reference.txt";
+
   // TODO: get that magic number from somewhere
   std::list< std::vector<double> > input = read_from_txt( ss_input.str(), 64);
   std::list< std::vector<double> > output = brain.forward( input );
+  std::list< std::vector<double> > reference = read_from_txt( ss_reference.str(), 1 );
 
-  for( auto p : output )
-  {
-    std::cout << p[0] << std::endl;
-  }
+  assert( output == reference );
 }
