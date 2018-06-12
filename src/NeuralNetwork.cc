@@ -61,7 +61,7 @@ void NeuralNetwork::update_connectivity()
   }
 }
 
-std::list< std::vector<double> > NeuralNetwork::forward(std::list< std::vector<double> > input)
+std::list< std::vector<double> > NeuralNetwork::forward(const std::list< std::vector<double> >& input)
 {
   // standardize input data
 
@@ -70,21 +70,25 @@ std::list< std::vector<double> > NeuralNetwork::forward(std::list< std::vector<d
   // compute activiation in each layer and output
 
   std::list< std::vector<double> > output;
-
-  // TODO: enter here, efficient matrix multiplication routine
-
   for (auto one = input.cbegin(); one != input.cend(); ++one)
   {
-    std::vector<double> activation = standardize_input_data( *one );
-
-    // TODO: move to different abstraction
-    for (auto it = layers.begin(); it != layers.end(); ++it)
-      activation = it->compute_activation(activation);
-
+    std::vector<double> activation = forward( *one );
     output.push_back(activation);
   }
 
   return output;
+}
+
+std::vector<double> NeuralNetwork::forward(const std::vector<double>& input)
+{
+  std::vector<double> activation = standardize_input_data( input );
+
+  // TODO: move to different abstraction
+  for (auto it = layers.begin(); it != layers.end(); ++it)
+    activation = it->compute_activation(activation);
+
+  return activation;
+
 }
 
 void NeuralNetwork::print()
@@ -95,6 +99,12 @@ void NeuralNetwork::print()
 
     layer.print();
   }
+}
+
+void NeuralNetwork::from_file( const char * filename )
+{
+  std::string my_file_name( filename );
+  from_file( my_file_name );
 }
 
 void NeuralNetwork::from_file( std::string filename ) 

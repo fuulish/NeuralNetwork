@@ -23,9 +23,11 @@ class NeuralNetwork
     }
 
     void from_file(std::string filename);
+    void from_file(const char * filename);
     void update_connectivity();
     // const std::vector<double> forward( const std::vector<double>& activation );
-    std::list<std::vector<double> > forward(std::list<std::vector<double>> input);
+    std::list<std::vector<double> > forward(const std::list<std::vector<double>>& input);
+    std::vector<double> forward(const std::vector<double>& input);
 
     void backward(/*some sort of loss function */);
 
