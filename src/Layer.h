@@ -20,7 +20,7 @@ class Layer
 
     void add_nonlinearity( const std::string& nonlinear_function ) {
         if( nonlinear_function.compare("tanh") == 0 ) {
-            nonlinear = std::bind( tanh, std::placeholders::_1 );
+            nonlinear = []( double a ){ return tanh(a); };
         }
     }
 
