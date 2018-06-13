@@ -79,13 +79,39 @@ std::list< std::vector<double> > NeuralNetwork::forward(const std::list< std::ve
   return output;
 }
 
+std::vector<double> NeuralNetwork::backward( const std::vector<double> & loss )
+{
+  std::cout << "Not Implemented!" << std::endl;
+
+  std::vector<double> gradient;
+  return gradient;
+}
+
+std::vector<double> NeuralNetwork::backward()
+{
+  auto pre_last_layer = --(layers.rend());
+
+  std::vector<double> gradient(pre_last_layer->size(), 1.);
+  // std::vector<double> gradient;
+
+  for( auto it=layers.rbegin(); it != layers.rend(); ++it )
+  {
+    // gradient = it->backprop_gradient(gradient);
+    gradient = it->backprop_gradient( gradient );
+  }
+
+  return gradient;
+}
+
 std::vector<double> NeuralNetwork::forward(const std::vector<double>& input)
 {
   std::vector<double> activation = standardize_input_data( input );
 
   // TODO: move to different abstraction
-  for (auto it = layers.begin(); it != layers.end(); ++it)
+  for (auto it = layers.begin(); it != layers.end(); ++it) {
+    it->set_cache(activation);
     activation = it->compute_activation(activation);
+  }
 
   return activation;
 

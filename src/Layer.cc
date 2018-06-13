@@ -32,3 +32,11 @@ const std::vector<double> Layer::compute_activation(const std::vector<double> &i
 
   return activation;
 }
+
+std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradient )
+{
+
+  std::vector<double> backprop;
+
+  return backprop;
+}

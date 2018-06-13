@@ -18,6 +18,8 @@ class Layer
 
     const std::vector<double> compute_activation(const std::vector<double> &input);
 
+    std::vector<double> backprop_gradient( const std::vector<double>& gradient );
+
     void add_nonlinearity( const std::string& nonlinear_function ) {
         if( nonlinear_function.compare("tanh") == 0 ) {
             nonlinear = []( double a ){ return tanh(a); };
@@ -58,8 +60,16 @@ class Layer
             std::cout << "node with " << node.size() << " weights" << std::endl;
     }
 
+    void set_cache( const std::vector<double>& cache )
+    {
+        this->cache = cache;
+    }
+
+    // std::vector<double> backprop_gradient( const std::vector<double>& gradient );
+
   private:
     std::list<Node> nodes;
     std::vector<double> activation;
     std::function<double(double)> nonlinear = NULL;
+    std::vector<double> cache;
 };

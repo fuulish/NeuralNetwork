@@ -29,7 +29,8 @@ class NeuralNetwork
     std::list<std::vector<double> > forward(const std::list<std::vector<double>>& input);
     std::vector<double> forward(const std::vector<double>& input);
 
-    void backward(/*some sort of loss function */);
+    std::vector<double> backward(const std::vector<double> & loss ); // compute gradient based on loss function
+    std::vector<double> backward(); // compute the gradients solely based on the output/input
 
     void print();
 
