@@ -52,13 +52,12 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
   auto cache_it = cache.cbegin();
   auto gradient_it = gradient.cbegin();
 
-  std::cout << "info" << std::endl;
   for( auto node : nodes ) {
 
     std::vector<double> node_grad = node.gradient();
 
 #ifdef DEBUG
-    std::cout << cache.size() << gradient.size() << node_grad.size() <<  backprop.size() << std::endl;
+//     std::cout << cache.size() << gradient.size() << node_grad.size() <<  backprop.size() << std::endl;
 #endif
 
     std::transform( node_grad.begin(), node_grad.end(), node_grad.begin(),
