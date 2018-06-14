@@ -41,8 +41,9 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
   // size of new gradient is the size of the nodes' weight array
   std::vector<double> backprop ((*nodes.cbegin()).size(), 0.);
 
+// TODO: check why this assertion is meaninless
 #ifdef DEBUG
-  assert( gradient.size() == backprop.size() );
+//   assert( gradient.size() == backprop.size() );
 #endif
 
   // 1. get gradient from each node on previous layer
