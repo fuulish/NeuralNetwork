@@ -33,10 +33,21 @@ const std::vector<double> Layer::compute_activation(const std::vector<double> &i
   return activation;
 }
 
-std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradient )
+std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradient ) // gradient is the gradient on each node from the previous layer
 {
 
-  std::vector<double> backprop;
+  // size of new gradient is the size of the nodes' weight array
+  std::vector<double> backprop ((*nodes.cbegin()).size(), 0.);
+
+  // 1. get gradient from each node on previous layer
+  // not always do we need the previous' layer's activations, but sometimes? <- node-specific
+
+  for( auto it: nodes ) {
+    it->gradient();
+    // backprop 
+  }
+
+  // 2. get gradient of activation function <- layer-specific // multiply with gradient from 1.
 
   return backprop;
 }
