@@ -117,6 +117,8 @@ std::vector<double> NeuralNetwork::forward(const std::vector<double>& input)
 {
   std::vector<double> activation = standardize_input_data( input );
 
+  std::cout << "INPUT SIZE: " << activation.size() << std::endl;
+
   // TODO: move to different abstraction
   for (auto it = layers.begin(); it != layers.end(); ++it) {
     it->set_cache(activation);

@@ -13,9 +13,10 @@ int main(int argc, char *argv[])
   std::string input_file = ss.str();
 
   brain.add_layer(2);
-  brain.add_layer(1, "tanh");
+  brain.add_layer(2, "tanh");
+  brain.add_layer(1);
 
-  std::vector<double> one_pic(1, 2);
+  std::vector<double> one_pic(2, 1);
   auto ener = brain.forward(one_pic);
 
   std::cout << ener[0] << " " << 0.7616 << std::endl;
@@ -24,11 +25,11 @@ int main(int argc, char *argv[])
 
   std::cout << gradient.size() << std::endl;
 
-  assert( fabsf(gradient[0] - 7.0651e-2) < 1.e-5 );
-  assert( fabsf(gradient[1] - 7.0651e-2) < 1.e-5 );
-
   for (auto it = gradient.cbegin(); it != gradient.cend(); ++it)
   {
     std::cout << "Final: " << *it << std::endl;
   }
+
+  assert( fabsf(gradient[0] - 7.0651e-2) < 1.e-5 );
+  assert( fabsf(gradient[0] - 7.0651e-2) < 1.e-5 );
 }

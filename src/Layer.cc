@@ -41,7 +41,9 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
   // size of new gradient is the size of the nodes' weight array
   std::vector<double> backprop ((*nodes.cbegin()).size(), 0.);
 
+#ifdef DEBUG
   assert( gradient.size() == backprop.size() );
+#endif
 
   // 1. get gradient from each node on previous layer
   // not always do we need the previous' layer's activations, but sometimes? <- node-specific
@@ -49,9 +51,14 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
   auto cache_it = cache.cbegin();
   auto gradient_it = gradient.cbegin();
 
+  std::cout << "info" << std::endl;
   for( auto node : nodes ) {
 
     std::vector<double> node_grad = node.gradient();
+
+#ifdef DEBUG
+    std::cout << cache.size() << gradient.size() << node_grad.size() <<  backprop.size() << std::endl;
+#endif
 
     std::transform( node_grad.begin(), node_grad.end(), node_grad.begin(),
                     [ gradient_it ] ( double a )
@@ -61,7 +68,7 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
     {
       std::transform( node_grad.begin(), node_grad.end(), node_grad.begin(),
                       [ this, cache_it ] ( double a )
-                      { return this->nonlinear_gradient( *cache_it ); } );
+                      { return a * this->nonlinear_gradient( *cache_it ); } );
     }
 
     std::transform( node_grad.begin(), node_grad.end(), backprop.begin(), backprop.begin(), []( double a, double b ) {return a + b; } );
