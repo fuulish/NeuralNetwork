@@ -1,5 +1,6 @@
+#include <cmath>
+#include <algorithm>
 #include "Layer.h"
-#include "cmath"
 
 void Layer::update_nodes(int num_following)
 {
@@ -42,8 +43,18 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
   // 1. get gradient from each node on previous layer
   // not always do we need the previous' layer's activations, but sometimes? <- node-specific
 
+  auto cache_it = cache.cbegin();
   for( auto it: nodes ) {
-    it->gradient();
+    std::vector<double> node_grad = it.gradient();
+
+    if( nonlinear ) {
+      std::transform( node_grad.begin(), node_grad.end(), backprop.begin(), backprop.begin(),
+                    [ this, cache_it ]( double a, double b ){ return b + ( (a) * this->nonlinear_gradient( *cache_it ) );} );
+    }
+
+    std::advance( cache_it, 1 );
+
+    // std::transform( node_gra );
     // backprop 
   }
 

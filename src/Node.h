@@ -35,7 +35,10 @@ public:
     return std::inner_product(input.begin(), input.end(), weights.begin(), 0.) + bias;
   }
 
-  std::vector gradient();
+  std::vector<double> gradient()
+  {
+    return weights;
+  }
 
 private:
   std::vector<double> weights;

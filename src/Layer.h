@@ -23,6 +23,8 @@ class Layer
     void add_nonlinearity( const std::string& nonlinear_function ) {
         if( nonlinear_function.compare("tanh") == 0 ) {
             nonlinear = []( double a ){ return tanh(a); };
+            // TODO: eliminate twice tanh evaluation
+            nonlinear_gradient = [] ( double a ){ return ( 1 - (tanh(a)*tanh(a)));};
         }
     }
 
@@ -71,5 +73,6 @@ class Layer
     std::list<Node> nodes;
     std::vector<double> activation;
     std::function<double(double)> nonlinear = NULL;
+    std::function<double(double)> nonlinear_gradient = NULL;
     std::vector<double> cache;
 };
