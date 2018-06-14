@@ -30,6 +30,6 @@ int main(int argc, char *argv[])
     std::cout << "Final: " << *it << std::endl;
   }
 
-  assert( fabsf(gradient[0] - 7.0651e-2) < 1.e-5 );
-  assert( fabsf(gradient[0] - 7.0651e-2) < 1.e-5 );
+  assert( fabsf(gradient[0] - 0.14130165) < 1.e-5 );
+  assert( fabsf(gradient[0] - 0.14130165) < 1.e-5 );
 }
