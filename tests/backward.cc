@@ -26,7 +26,9 @@ int main(int argc, char *argv[])
 
   std::cout << gradient.size() << std::endl;
 
-  for( auto it = gradient.cbegin(); it != gradient.cend(); ++it )
+  assert( fabsf(3.0865e-19 - gradient[0]) < 1.e24 );
+
+  for (auto it = gradient.cbegin(); it != gradient.cend(); ++it)
   {
     std::cout << *it << std::endl;
   }
