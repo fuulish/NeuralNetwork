@@ -47,7 +47,8 @@ void NeuralNetwork::add_layer(int num_nodes, const std::string& nonlinearity)
 
 void NeuralNetwork::add_layer(int num_nodes, const char * nonlinearity)
 {
-  std::string nonlin ("nonlinearity");
+
+  std::string nonlin (nonlinearity);
 
   add_layer(num_nodes, nonlin);
 }
