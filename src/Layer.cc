@@ -1,6 +1,7 @@
 #include <cmath>
 #include <algorithm>
 #include "Layer.h"
+#include <cassert>
 
 void Layer::update_nodes(int num_following)
 {
@@ -40,19 +41,49 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
   // size of new gradient is the size of the nodes' weight array
   std::vector<double> backprop ((*nodes.cbegin()).size(), 0.);
 
+  assert( gradient.size() == backprop.size() );
+
   // 1. get gradient from each node on previous layer
   // not always do we need the previous' layer's activations, but sometimes? <- node-specific
 
   auto cache_it = cache.cbegin();
-  for( auto it: nodes ) {
-    std::vector<double> node_grad = it.gradient();
+  auto gradient_it = gradient.cbegin();
 
-    if( nonlinear ) {
-      std::transform( node_grad.begin(), node_grad.end(), backprop.begin(), backprop.begin(),
-                    [ this, cache_it ]( double a, double b ){ return b + ( (a) * this->nonlinear_gradient( *cache_it ) );} );
+  for( auto node : nodes ) {
+
+    std::vector<double> node_grad = node.gradient();
+
+    std::transform( node_grad.begin(), node_grad.end(), node_grad.begin(),
+                    [ gradient_it ] ( double a )
+                    { return (*gradient_it) * a; } );
+
+    if( nonlinear )
+    {
+      std::transform( node_grad.begin(), node_grad.end(), node_grad.begin(),
+                      [ this, cache_it ] ( double a )
+                      { return this->nonlinear_gradient( *cache_it ); } );
     }
 
+    std::transform( node_grad.begin(), node_grad.end(), backprop.begin(), backprop.begin(), []( double a, double b ) {return a + b; } );
+
+    // std::cout << "MY SIZE: " << node_grad.size() << std::endl;
+
+    // for( auto grd : node_grad )
+    // {
+    //   std::cout << "NODE GRAD: " << grd << " " << *cache_it << std::endl;
+
+    //   if( nonlinear )
+    //     std::cout << "BLABLA: " << this->nonlinear_gradient( *cache_it ) << std::endl;
+
+    //   if( nonlinear ) {
+    //     std::transform( node_grad.begin(), node_grad.end(), backprop.begin(), backprop.begin(),
+    //                   [ this, cache_it ]( double a, double b ){ return b + ( (a) * this->nonlinear_gradient( *cache_it ) );} );
+    //   }
+
+    // }
+
     std::advance( cache_it, 1 );
+    std::advance( gradient_it, 1 );
 
     // std::transform( node_gra );
     // backprop 

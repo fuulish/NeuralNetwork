@@ -90,9 +90,18 @@ std::vector<double> NeuralNetwork::backward( const std::vector<double> & loss )
 
 std::vector<double> NeuralNetwork::backward()
 {
-  auto pre_last_layer = --(layers.rend());
 
-  std::vector<double> gradient(pre_last_layer->size(), 1.);
+  int grad_size;
+  if( layers.size() >= 2 )
+  {
+    auto pre_last_layer = --(layers.rend());
+    grad_size = pre_last_layer->size();
+  }
+  else
+  {
+    grad_size = mean.size();    
+  }
+  std::vector<double> gradient( grad_size, 1. );
   // std::vector<double> gradient;
 
   for( auto it=layers.rbegin(); it != layers.rend(); ++it )

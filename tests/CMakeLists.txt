@@ -20,6 +20,9 @@ target_link_libraries (Forward nn)
 add_executable (TorchComparison EXCLUDE_FROM_ALL torch_comparison.cc)
 target_link_libraries (TorchComparison nn)
 
+add_executable (BackwardSimple EXCLUDE_FROM_ALL backward_simple.cc)
+target_link_libraries (BackwardSimple nn)
+
 add_executable (Backward EXCLUDE_FROM_ALL backward.cc)
 target_link_libraries (Backward nn)
 
