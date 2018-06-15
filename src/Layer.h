@@ -24,7 +24,7 @@ class Layer
         if( nonlinear_function.compare("tanh") == 0 ) {
             nonlinear = []( double a ){ return tanh(a); };
             // TODO: eliminate twice tanh evaluation
-            nonlinear_gradient = [] ( double a ){ return 1 - ( a*a ); }; // this is the outermost function derivation, a is the saved activation, i.e., tanh(node_input) // TODO think about how to do differently
+            nonlinear_gradient = [] ( double a ){ return 1 - ( a*a ); }; // this is the outermost function derivative, a is the saved activation, i.e., tanh(node_input) // TODO think about how to do differently
         }
     }
 
