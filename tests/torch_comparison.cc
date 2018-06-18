@@ -2,8 +2,8 @@
 #include <vector>
 #include <string>
 #include <list>
-#include <NeuralNetwork/NeuralNetwork.h>
-#include <NeuralNetwork/io.h>
+#include <nn/NeuralNetwork.h>
+#include <nn/io.h>
 #include <fstream>
 #include <sstream>
 #include <iostream>

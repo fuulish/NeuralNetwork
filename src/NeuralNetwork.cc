@@ -1,4 +1,4 @@
-#include <NeuralNetwork/NeuralNetwork.h>
+#include <nn/NeuralNetwork.h>
 #include <iostream>
 #include <sstream>
 #include <string>

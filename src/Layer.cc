@@ -1,6 +1,6 @@
 #include <cmath>
 #include <algorithm>
-#include <NeuralNetwork/Layer.h>
+#include <nn/Layer.h>
 #include <cassert>
 
 void Layer::update_nodes(int num_following)

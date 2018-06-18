@@ -4,7 +4,7 @@
 #include <string>
 #include <cmath>
 #include <functional>
-#include "Node.h"
+#include <nn/Node.h>
 
 class Layer
 {

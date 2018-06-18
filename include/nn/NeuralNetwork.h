@@ -1,7 +1,7 @@
 #include <list>
 #include <vector>
 #include <fstream>
-#include "Layer.h"
+#include <nn/Layer.h>
 #include <algorithm>
 
 class NeuralNetwork
