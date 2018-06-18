@@ -1,5 +1,5 @@
 
-#include "NeuralNetwork.h"
+#include <NeuralNetwork/NeuralNetwork.h>
 #include <cassert>
 #include <sstream>
 
