@@ -34,7 +34,7 @@ class NeuralNetwork
 
     void print();
 
-    int get_number_of_layers() { return num_layers; }
+    int get_number_of_layers() { return layers.size(); }
     const std::list<int> get_layer_structure()
     {
         std::list<int> layer_structure;
