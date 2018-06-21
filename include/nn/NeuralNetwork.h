@@ -72,6 +72,11 @@ class NeuralNetwork
         return &(*layer_it);
     }
 
+    const std::vector<double>& get_stdev()
+    {
+        return stdev;
+    }
+
   private:
     std::list<Layer> layers;
     int num_layers, previous_size;
