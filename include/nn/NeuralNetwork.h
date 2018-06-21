@@ -64,12 +64,12 @@ class NeuralNetwork
     }
 
     // TODO: use pointer or reference here?
-    Layer* get_layer( int num )
+    Layer& get_layer( int num )
     {
         auto layer_it = layers.begin();
         std::advance(layer_it, num);
 
-        return &(*layer_it);
+        return *layer_it;
     }
 
     const std::vector<double>& get_stdev()

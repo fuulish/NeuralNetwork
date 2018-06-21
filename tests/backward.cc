@@ -35,16 +35,16 @@ int main(int argc, char *argv[])
 
   brain.print();
 
-  auto layer = brain.get_layer(0);
+  auto& layer = brain.get_layer(0);
   std::list<std::vector<double> > weights;
 
-  for( int i=0; i<layer->size(); ++i ) {
+  for( int i=0; i<layer.size(); ++i ) {
     std::vector<double> node_weights( 15, 0.01 );
     weights.push_back( node_weights );
   }
 
   brain.print();
-  layer->set_weights(weights);
+  layer.set_weights(weights);
   brain.print();
 
   ener = brain.forward(one_pic);
