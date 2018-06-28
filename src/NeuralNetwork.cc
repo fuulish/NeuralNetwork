@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <utility>
 
 void NeuralNetwork::add_layer(int num_nodes)
 {
@@ -39,9 +40,7 @@ void NeuralNetwork::add_layer(int num_nodes, const std::string& nonlinearity)
   add_layer(num_nodes);
 
   // better with deque
-  auto last_layer = layers.end();
-  --last_layer;
-
+  auto last_layer = layers.rbegin();
   last_layer->add_nonlinearity(nonlinearity);
 }
 
@@ -74,7 +73,8 @@ std::list< std::vector<double> > NeuralNetwork::forward(const std::list< std::ve
   for (auto one = input.cbegin(); one != input.cend(); ++one)
   {
     std::vector<double> activation = forward( *one );
-    output.push_back(activation);
+    output.push_back( activation );
+    // output.push_back( std::move( activation ) );
   }
 
   return output;
@@ -173,8 +173,7 @@ void NeuralNetwork::from_file( std::string filename )
 
       add_layer( num_nodes, token );
 
-      auto it = layers.end();
-      it--;
+      auto it = layers.rbegin();
       it->add_nonlinearity( token );
 
     }

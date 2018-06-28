@@ -38,7 +38,7 @@ class NeuralNetwork
     const std::list<int> get_layer_structure()
     {
         std::list<int> layer_structure;
-        for (auto p : layers)
+        for (auto& p : layers)
         {
             layer_structure.push_back(p.size());
         }

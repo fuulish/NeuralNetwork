@@ -17,7 +17,7 @@ const std::vector<double> Layer::compute_activation(const std::vector<double> &i
   std::vector<double> activation(size(), 0.);
 
   int cnt = 0;
-  for (auto node : nodes)
+  for (auto& node : nodes)
   {
     activation[cnt++] = node.activate(input);
   }
@@ -52,7 +52,7 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
   auto cache_it = cache.cbegin();
   auto gradient_it = gradient.cbegin();
 
-  for( auto node : nodes ) {
+  for( auto& node : nodes ) {
 
     std::vector<double> node_grad = node.gradient();
 
