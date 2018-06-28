@@ -94,8 +94,7 @@ std::vector<double> NeuralNetwork::backward()
   int grad_size;
   if( layers.size() >= 2 )
   {
-    auto pre_last_layer = --(layers.rend());
-    grad_size = pre_last_layer->size();
+    grad_size = layers.rbegin()->size();
   }
   else
   {
