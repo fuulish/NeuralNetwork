@@ -22,6 +22,10 @@ class NeuralNetwork
         this->stdev  = stdev ;
     }
 
+    int get_input_size() {
+        return this->mean.size();
+    }
+
     void from_file(std::string filename);
     void from_file(const char * filename);
     void update_connectivity();
