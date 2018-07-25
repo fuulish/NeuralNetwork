@@ -100,3 +100,49 @@ std::vector<double> Layer::backprop_gradient( const std::vector<double>& gradien
 
   return backprop;
 }
+
+void Layer::add_nonlinearity( const std::string& nonlinear_function ) {
+    if( nonlinear_function.compare("tanh") == 0 ) {
+        nonlinear = []( double a ){ return tanh(a); };
+        // TODO: eliminate twice tanh evaluation
+        nonlinear_gradient = [] ( double a ){ return 1 - ( a*a ); }; // this is the outermost function derivative, a is the saved activation, i.e., tanh(node_input) // TODO think about how to do differently
+    }
+}
+
+void Layer::set_bias( const std::list< double > bias )
+{
+    auto it = bias.begin();
+    for( auto& p : nodes ) {
+
+        p.update_bias( *it );
+        std::advance(it, 1);
+
+    }
+}
+
+void Layer::set_weights( std::list< std::vector<double> > weights )
+{
+    auto it = weights.begin();
+    for( auto& p : nodes ) {
+
+        p.update_weights( *it );
+        std::advance(it, 1);
+
+    }
+
+}
+
+int Layer::size() const
+{
+    return nodes.size();
+}
+
+void Layer::print()
+{
+    for (auto &node : nodes)
+        std::cout << "node with " << node.size() << " weights" << std::endl;
+}
+void Layer::set_cache( const std::vector<double>& cache )
+{
+    this->cache = cache;
+}

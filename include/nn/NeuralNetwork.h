@@ -13,19 +13,8 @@ class NeuralNetwork
     void add_layer(int num_nodes, const char *nonlinearity);
     void add_layer(int num_nodes, const std::string &nonlinearity);
 
-    void set_input_size( int num_input )
-    {
-        std::vector<double> mean( num_input, 0. );
-        this->mean = mean;
-
-        std::vector<double> stdev( num_input, 1. );
-        this->stdev  = stdev ;
-    }
-
-    int get_input_size() {
-        return this->mean.size();
-    }
-
+    void set_input_size( int num_input );
+    int get_input_size();
     void from_file(std::string filename);
     void from_file(const char * filename);
     void update_connectivity();
@@ -39,47 +28,12 @@ class NeuralNetwork
     void print();
 
     int get_number_of_layers() { return layers.size(); }
-    const std::list<int> get_layer_structure()
-    {
-        std::list<int> layer_structure;
-        for (auto& p : layers)
-        {
-            layer_structure.push_back(p.size());
-        }
-
-        return layer_structure;
-    }
-
-    void set_feature_standardization(std::vector<double> stdev, std::vector<double> mean)
-    {
-        this->mean = mean;
-        this->stdev = stdev;
-    }
-
-    std::vector<double> standardize_input_data( const std::vector<double> & input )
-    {
-
-        std::vector<double> standardized( input.size(), 0. );
-        std::transform( input.begin(), input.end(), mean.begin(), standardized.begin(), []( double a, double b ){ return( a - b ); });
-        std::transform( standardized.begin(), standardized.end(), stdev.begin(), standardized.begin(), []( double a, double b ){ return( a / b ); });
-
-        return standardized;
-
-    }
-
+    const std::list<int> get_layer_structure();
+    void set_feature_standardization(std::vector<double> stdev, std::vector<double> mean);
+    std::vector<double> standardize_input_data( const std::vector<double> & input );
     // TODO: use pointer or reference here?
-    Layer& get_layer( int num )
-    {
-        auto layer_it = layers.begin();
-        std::advance(layer_it, num);
-
-        return *layer_it;
-    }
-
-    const std::vector<double>& get_stdev()
-    {
-        return stdev;
-    }
+    Layer& get_layer( int num );
+    const std::vector<double>& get_stdev();
 
   private:
     std::list<Layer> layers;

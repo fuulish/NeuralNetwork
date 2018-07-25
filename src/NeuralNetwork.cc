@@ -225,3 +225,58 @@ void NeuralNetwork::from_file( std::string filename )
   myfile.close();
 
 }
+
+void NeuralNetwork::set_input_size( int num_input )
+{
+    std::vector<double> mean( num_input, 0. );
+    this->mean = mean;
+
+    std::vector<double> stdev( num_input, 1. );
+    this->stdev  = stdev ;
+}
+
+int NeuralNetwork::get_input_size() {
+    return this->mean.size();
+}
+
+const std::list<int> NeuralNetwork::get_layer_structure()
+{
+    std::list<int> layer_structure;
+    for (auto& p : layers)
+    {
+        layer_structure.push_back(p.size());
+    }
+
+    return layer_structure;
+}
+
+void NeuralNetwork::set_feature_standardization(std::vector<double> stdev, std::vector<double> mean)
+{
+    this->mean = mean;
+    this->stdev = stdev;
+}
+
+std::vector<double> NeuralNetwork::standardize_input_data( const std::vector<double> & input )
+{
+
+    std::vector<double> standardized( input.size(), 0. );
+    std::transform( input.begin(), input.end(), mean.begin(), standardized.begin(), []( double a, double b ){ return( a - b ); });
+    std::transform( standardized.begin(), standardized.end(), stdev.begin(), standardized.begin(), []( double a, double b ){ return( a / b ); });
+
+    return standardized;
+
+}
+
+// TODO: use pointer or reference here?
+Layer& NeuralNetwork::get_layer( int num )
+{
+    auto layer_it = layers.begin();
+    std::advance(layer_it, num);
+
+    return *layer_it;
+}
+
+const std::vector<double>& NeuralNetwork::get_stdev()
+{
+    return stdev;
+}
