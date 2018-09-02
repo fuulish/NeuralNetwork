@@ -10,7 +10,9 @@ Documentation is lacking.
 CMake is used for building the library.
 For example to build in a separate directory:
 
-`$> mkdir build && cd build`
-`$> cmake ../`
-`$> make`
+```
+$> mkdir build && cd build
+$> cmake ../
+$> make
+```
 
