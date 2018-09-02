@@ -4,6 +4,7 @@ Small C++ code to evaluate forward and backward passes in simple feed forward ne
 No external math libraries required, only modern C++11 features and data structures.
 
 Documentation is lacking.
+See `examples` and `tests` directory for some simple use cases.
 
 ## Installation
 
