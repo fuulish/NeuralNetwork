@@ -18,11 +18,11 @@ class NeuralNetwork
     void from_file(std::string filename);
     void from_file(const char * filename);
     void update_connectivity();
-    // const std::vector<double> forward( const std::vector<double>& activation );
+
     std::list<std::vector<double> > forward(const std::list<std::vector<double>>& input);
     std::vector<double> forward(const std::vector<double>& input);
 
-    std::vector<double> backward(const std::vector<double> & loss ); // compute gradient based on loss function
+    std::vector<double> backward(const std::vector<double> & loss ); // compute gradient based on loss function, TODO: implement
     std::vector<double> backward(); // compute the gradients solely based on the output/input
 
     void print();
@@ -31,7 +31,7 @@ class NeuralNetwork
     const std::list<int> get_layer_structure();
     void set_feature_standardization(std::vector<double> stdev, std::vector<double> mean);
     std::vector<double> standardize_input_data( const std::vector<double> & input );
-    // TODO: use pointer or reference here?
+
     Layer& get_layer( int num );
     const std::vector<double>& get_stdev();
 
@@ -49,5 +49,6 @@ class NeuralNetwork
 /* Q&A
 
 Q: is it easier to just add vector/array structures to the neural network without the other classes
+A: in a way, yes, but then we need to add libraries or program matrix vector products, manually
 
 */

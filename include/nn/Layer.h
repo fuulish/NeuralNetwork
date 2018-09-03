@@ -25,8 +25,6 @@ class Layer
     void print();
     void set_cache( const std::vector<double>& cache );
 
-    // std::vector<double> backprop_gradient( const std::vector<double>& gradient );
-
   private:
     std::list<Node> nodes;
     std::vector<double> activation;

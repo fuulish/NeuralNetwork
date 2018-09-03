@@ -9,8 +9,6 @@ void NeuralNetwork::add_layer(int num_nodes)
 
   // invalidate cached weights
 
-  // add layer with correct number of nodes
-
   // 1st layer needs to get size of input layer
 
   if( (previous_size == 0) && (layers.size() == 0))
@@ -23,6 +21,7 @@ void NeuralNetwork::add_layer(int num_nodes)
 
     previous_size = num_nodes;
   } else
+  // add layer with correct number of nodes
   {
     Layer layer(num_nodes);
     layer.update_nodes(previous_size);
@@ -31,15 +30,12 @@ void NeuralNetwork::add_layer(int num_nodes)
   }
 
   update_connectivity();
-
-  // update cached matrices for fast evaluation of linear algebra
 }
 
 void NeuralNetwork::add_layer(int num_nodes, const std::string& nonlinearity)
 {
   add_layer(num_nodes);
 
-  // better with deque
   auto last_layer = layers.rbegin();
   last_layer->add_nonlinearity(nonlinearity);
 }
@@ -63,18 +59,12 @@ void NeuralNetwork::update_connectivity()
 
 std::list< std::vector<double> > NeuralNetwork::forward(const std::list< std::vector<double> >& input)
 {
-  // standardize input data
-
-  // standardize_input_data( input );
-
-  // compute activiation in each layer and output
-
   std::list< std::vector<double> > output;
+
   for (auto one = input.cbegin(); one != input.cend(); ++one)
   {
     std::vector<double> activation = forward( *one );
     output.push_back( activation );
-    // output.push_back( std::move( activation ) );
   }
 
   return output;
@@ -101,11 +91,9 @@ std::vector<double> NeuralNetwork::backward()
     grad_size = mean.size();    
   }
   std::vector<double> gradient( grad_size, 1. );
-  // std::vector<double> gradient;
 
   for( auto it=layers.rbegin(); it != layers.rend(); ++it )
   {
-    // gradient = it->backprop_gradient(gradient);
     gradient = it->backprop_gradient( gradient );
   }
 
@@ -267,7 +255,6 @@ std::vector<double> NeuralNetwork::standardize_input_data( const std::vector<dou
 
 }
 
-// TODO: use pointer or reference here?
 Layer& NeuralNetwork::get_layer( int num )
 {
     auto layer_it = layers.begin();
