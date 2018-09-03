@@ -104,10 +104,8 @@ std::vector<double> NeuralNetwork::forward(const std::vector<double>& input)
 {
   std::vector<double> activation = standardize_input_data( input );
 
-  // TODO: move to different abstraction
   for (auto it = layers.begin(); it != layers.end(); ++it) {
     activation = it->compute_activation(activation);
-    it->set_cache(activation);
   }
 
   return activation;
@@ -119,7 +117,6 @@ void NeuralNetwork::print()
   for (auto &layer : layers)
   {
     std::cout << "Layer contains: " << layer.size() << " nodes" << std::endl;
-
     layer.print();
   }
 }

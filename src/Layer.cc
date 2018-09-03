@@ -14,6 +14,7 @@ void Layer::update_nodes(int num_following)
 const std::vector<double> Layer::compute_activation(const std::vector<double> &input)
 {
 
+  // NOTE: this function kinda does two things now, we'll stick with it, though
   std::vector<double>& activation = cache;
 
   int cnt = 0;
