@@ -35,6 +35,8 @@ class NeuralNetwork
     Layer& get_layer( int num );
     const std::vector<double>& get_stdev();
 
+    void check_input_consistency( const std::vector< double >& input );
+
   private:
     std::list<Layer> layers;
     int num_layers, previous_size;

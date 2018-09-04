@@ -70,6 +70,14 @@ std::list< std::vector<double> > NeuralNetwork::forward(const std::list< std::ve
   return output;
 }
 
+void NeuralNetwork::check_input_consistency( const std::vector< double >& input )
+{
+  if( input.size() != mean.size() ) {
+    std::cout << "ERROR: input size does not match network size" << std::endl;
+    exit( 1 );
+  }
+}
+
 std::vector<double> NeuralNetwork::backward( const std::vector<double> & loss )
 {
   std::cout << "Not Implemented!" << std::endl;
@@ -102,6 +110,8 @@ std::vector<double> NeuralNetwork::backward()
 
 std::vector<double> NeuralNetwork::forward(const std::vector<double>& input)
 {
+  check_input_consistency( input );
+
   std::vector<double> activation = standardize_input_data( input );
 
   for (auto it = layers.begin(); it != layers.end(); ++it) {

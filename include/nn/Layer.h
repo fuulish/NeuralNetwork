@@ -9,7 +9,7 @@
 class Layer
 {
   public:
-    Layer(int num_nodes) : nodes(num_nodes), cache(num_nodes) {}
+    Layer(int num_nodes) : nodes(num_nodes), cache(num_nodes, 0.), nonlinear(NULL), nonlinear_gradient(NULL) {}
 
     void update_nodes(int num_following);
     // TODO: find better way to include more variants of activation
@@ -27,7 +27,7 @@ class Layer
 
   private:
     std::list<Node> nodes;
-    std::function<double(double)> nonlinear = NULL;
-    std::function<double(double)> nonlinear_gradient = NULL;
     std::vector<double> cache;
+    std::function<double(double)> nonlinear;
+    std::function<double(double)> nonlinear_gradient;
 };
