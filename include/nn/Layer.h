@@ -1,10 +1,14 @@
+#ifndef LAYER_H
+#define LAYER_H
+
 #include <vector>
 #include <list>
 #include <iostream>
 #include <string>
-#include <cmath>
-#include <functional>
 #include <nn/Node.h>
+#include <functional>
+
+class Node;
 
 class Layer
 {
@@ -31,3 +35,5 @@ class Layer
     std::function<double(double)> nonlinear;
     std::function<double(double)> nonlinear_gradient;
 };
+
+#endif

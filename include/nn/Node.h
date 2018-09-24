@@ -1,5 +1,7 @@
+#ifndef NODE_H
+#define NODE_H
+
 #include <vector>
-#include <numeric>
 
 class Node
 {
@@ -18,3 +20,5 @@ private:
   std::vector<double> weights;
   double bias;
 };
+
+#endif

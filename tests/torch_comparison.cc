@@ -8,6 +8,7 @@
 #include <sstream>
 #include <iostream>
 #include <cassert>
+#include <cmath>
 
 int main( int argc, char *argv[] )
 {

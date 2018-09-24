@@ -1,3 +1,6 @@
+#ifndef NEURALNETWORK_H
+#define NEURALNETWORK_H
+
 #include <list>
 #include <vector>
 #include <fstream>
@@ -54,3 +57,5 @@ Q: is it easier to just add vector/array structures to the neural network withou
 A: in a way, yes, but then we need to add libraries or program matrix vector products, manually
 
 */
+
+#endif

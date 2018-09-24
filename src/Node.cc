@@ -1,4 +1,5 @@
 #include <nn/Node.h>
+#include <numeric>
 
 void Node::update_weights(const std::vector<double> &input_weights)
 {

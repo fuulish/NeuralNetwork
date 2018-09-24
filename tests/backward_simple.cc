@@ -2,6 +2,7 @@
 #include <nn/NeuralNetwork.h>
 #include <cassert>
 #include <sstream>
+#include <cmath>
 
 int main(int argc, char *argv[])
 {
